@@ -21,8 +21,9 @@
  *  0  => true
  *  -5 => false
  */
-function isPositive(/* number */) {
-  throw new Error('Not implemented');
+function isPositive(number) {
+  if (number * 1 > 0 || number === 0) return true;
+  return false;
 }
 
 /**
@@ -38,8 +39,15 @@ function isPositive(/* number */) {
  *  -5, 0, 5      => 5
  *  -0.1, 0, 0.2  => 0.2
  */
-function getMaxNumber(/* a, b, c */) {
-  throw new Error('Not implemented');
+function getMaxNumber(a, b, c) {
+  const array = [a, b, c];
+  let maxNumber = array[0];
+  for (let i = 0; i < array.length; i += 1) {
+    if (array[i] > maxNumber) {
+      maxNumber = array[i];
+    }
+  }
+  return maxNumber;
 }
 
 /**
@@ -100,8 +108,33 @@ function isIsoscelesTriangle(/* a, b, c */) {
  *  10  => X
  *  26  => XXVI
  */
-function convertToRomanNumerals(/* num */) {
-  throw new Error('Not implemented');
+function convertToRomanNumerals(num) {
+  const romanNumbers = [
+    'I',
+    'II',
+    'III',
+    'IV',
+    'V',
+    'VI',
+    'VII',
+    'VIII',
+    'IX',
+    'X',
+  ];
+  let tens = '';
+  let singles = '';
+
+  const tensNumber = Math.floor(num / 10);
+  const singlesNumber = num % 10;
+
+  for (let i = 0; i < tensNumber; i += 1) {
+    tens += 'X';
+  }
+  if (singlesNumber > 0) {
+    singles = romanNumbers[singlesNumber - 1];
+  }
+
+  return `${tens}${singles}`;
 }
 
 /**
