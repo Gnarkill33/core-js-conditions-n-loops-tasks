@@ -68,8 +68,16 @@ function getMaxNumber(a, b, c) {
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  */
-function canQueenCaptureKing(/* queen, king */) {
-  throw new Error('Not implemented');
+function canQueenCaptureKing(queen, king) {
+  if (queen.x === king.x || queen.y === king.y) {
+    return true;
+  }
+
+  if (Math.abs(queen.x - king.x) === Math.abs(queen.y - king.y)) {
+    return true;
+  }
+
+  return false;
 }
 
 /**
@@ -158,8 +166,65 @@ function convertToRomanNumerals(num) {
  *  '10,5'    => 'one zero point five'
  *  '1950.2'  => 'one nine five zero point two'
  */
-function convertNumberToString(/* numberStr */) {
-  throw new Error('Not implemented');
+function convertNumberToString(numberStr) {
+  let draftString = '';
+
+  for (let i = 0; i < numberStr.length; i += 1) {
+    const char = numberStr[i];
+    switch (char) {
+      case '0':
+        draftString += 'zero ';
+        break;
+      case '1':
+        draftString += 'one ';
+        break;
+      case '2':
+        draftString += 'two ';
+        break;
+      case '3':
+        draftString += 'three ';
+        break;
+      case '4':
+        draftString += 'four ';
+        break;
+      case '5':
+        draftString += 'five ';
+        break;
+      case '6':
+        draftString += 'six ';
+        break;
+      case '7':
+        draftString += 'seven ';
+        break;
+      case '8':
+        draftString += 'eight ';
+        break;
+      case '9':
+        draftString += 'nine ';
+        break;
+      case '-':
+        draftString += 'minus ';
+        break;
+      case '.':
+        draftString += 'point ';
+        break;
+      case ',':
+        draftString += 'point ';
+        break;
+      default:
+        draftString += `${char} `;
+        break;
+    }
+  }
+
+  let finalString = '';
+  let j = 0;
+  while (j < draftString.length - 1) {
+    finalString += draftString[j];
+    j += 1;
+  }
+
+  return finalString;
 }
 
 /**
@@ -250,8 +315,22 @@ function isContainNumber(num, digit) {
  *  [2, 3, 9, 5] => 2       => 2 + 3 === 5 then balance element is 9 and its index = 2
  *  [1, 2, 3, 4, 5] => -1   => no balance element
  */
-function getBalanceIndex(/* arr */) {
-  throw new Error('Not implemented');
+function getBalanceIndex(arr) {
+  let totalSum = 0;
+  for (let i = 0; i < arr.length; i += 1) {
+    totalSum += arr[i];
+  }
+
+  let leftSum = 0;
+
+  for (let i = 0; i < arr.length; i += 1) {
+    const rightSum = totalSum - leftSum - arr[i];
+    if (leftSum === rightSum) {
+      return i;
+    }
+    leftSum += arr[i];
+  }
+  return -1;
 }
 
 /**
